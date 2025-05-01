@@ -1,26 +1,8 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/404.html",
-      "dest": "/404.html"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)\\.(.*)",
-      "dest": "/$1.$2"
-    },
-    {
-      "src": "/(.*)/",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/404.html"
-    }
+  "rewrites": [
+    { "source": "/404.html", "destination": "/404.html" },
+    { "source": "/(.*)", "destination": "/404.html" }
   ],
   "headers": [
     {
@@ -57,5 +39,7 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
