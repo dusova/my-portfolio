@@ -1,8 +1,10 @@
-const CACHE_NAME = 'portfolio-cache-v1';
+const CACHE_NAME = 'portfolio-cache-v2';
 const ASSETS = [
   '/',
   '/index.html',
+  '/offline.html',
   '/assets/css/styles.css',
+  '/assets/js/ui.js',
   '/assets/images/heroImage.webp',
   '/assets/images/aboutImage.webp'
 ];
@@ -14,8 +16,13 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match('/offline.html'))
+    );
+  } else {
+    event.respondWith(
+      caches.match(event.request).then(response => response || fetch(event.request))
+    );
+  }
 });
-
