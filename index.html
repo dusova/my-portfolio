@@ -73,6 +73,7 @@
       }
     }
     </script>
+<script src="assets/js/ui.js"></script>
 
 </head>
 <body>
@@ -93,6 +94,13 @@
                 <li class="nav-item"><a href="#contact" class="nav-link">İletişim</a></li>
             </ul>
 
+            <div class="theme-lang-controls">
+                <button id="themeToggle" aria-label="Tema Değiştir">🌙</button>
+                <select id="languageSelect" aria-label="Dil Seçimi">
+                    <option value="tr">TR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
             <button class="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1098,6 +1106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtn.addEventListener('click', prevTrack);
     }
 });
+
 </script>
+<script src="assets/js/ui.js"></script>
 </body>
 </html>
