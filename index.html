@@ -93,6 +93,13 @@
                 <li class="nav-item"><a href="#contact" class="nav-link">İletişim</a></li>
             </ul>
 
+            <div class="theme-lang-controls">
+                <button id="themeToggle" aria-label="Tema Değiştir">🌙</button>
+                <select id="languageSelect" aria-label="Dil Seçimi">
+                    <option value="tr">TR</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
             <button class="mobile-toggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1096,6 +1103,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (prevBtn) {
         prevBtn.addEventListener('click', prevTrack);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const languageSelect = document.getElementById('languageSelect');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark-theme');
+            const theme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+    }
+
+    if (languageSelect) {
+        const savedLang = localStorage.getItem('lang') || 'tr';
+        languageSelect.value = savedLang;
+        document.documentElement.lang = savedLang;
+
+        languageSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.documentElement.lang = lang;
+            localStorage.setItem('lang', lang);
+            // Basic example translation
+            if(lang === 'en') {
+                document.querySelector('.nav-link.active').textContent = 'Home';
+            } else {
+                document.querySelector('.nav-link.active').textContent = 'Ana Sayfa';
+            }
+        });
+    }
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js').catch(console.error);
     }
 });
 </script>
