@@ -13,6 +13,14 @@
     --white: #ffffff;
 }
 
+.dark-theme {
+    --black: #ffffff;
+    --dark-gray: #f5f5f5;
+    --medium-gray: #bdbdbd;
+    --light-gray: #333333;
+    --white: #000000;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
@@ -184,6 +192,24 @@ img {
     font-size: 24px;
     cursor: pointer;
     color: var(--black);
+}
+
+.theme-lang-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--black);
+}
+
+#languageSelect {
+    padding: 4px;
 }
 
 /* Hero Section */
